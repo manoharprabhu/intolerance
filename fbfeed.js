@@ -2,15 +2,18 @@
 var blackList = [];
 function blockUnwantedFeeds(){
 	var suspects = $('#contentArea div[data-testid="fbfeed_story"]');
+	$('.bullshit-class').remove();
+	suspects.css('-webkit-filter','');
+	suspects.removeAttr('data-bullshit');
 	suspects.each(function(i) {
 		var str = $(this).text().toLowerCase();
-		$(this).css('-webkit-filter','none');
 		var flag = true;
 		blackList.forEach(function(item){
 				if(str.indexOf(item.toLowerCase()) !== -1 && flag){
 					this.css('-webkit-filter','grayscale(0.5) blur(10px)');
 					if(this.attr('data-bullshit') === undefined){
 						var salvation = $('<div>').css('position','relative')
+									.addClass('bullshit-class')
 									.css('width','100%')
 									.css('color','#FFFFFF')
 									.css('background-color','#2980b9')

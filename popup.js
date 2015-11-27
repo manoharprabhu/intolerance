@@ -31,13 +31,12 @@ var populateBlockedList = function () {
 	$('#block-item').val('');
 	chrome.storage.local.get({'blockedWords':[]}, function (result) {
 		result.blockedWords.forEach(function(item){
-			var oneItem = $('<div>')
+			var oneItem = $('<li>')
 					.text(item)
 					.attr('href','#')
 					.on('click',function(){
 						var clickedItem = $(this).text();
 						chrome.storage.local.get({'blockedWords':[]}, function (result) {
-							console.log(clickedItem);
 							var index = result.blockedWords.indexOf(clickedItem); 
 							if (index > -1) {
  							   result.blockedWords.splice(index, 1);
