@@ -22,21 +22,35 @@
 		padding: 5px 10px 5px 10px;
 		color:#FFFFFF;
 		border-radius: 5px;
+		margin:10px 10px 10px 0px;
 	}	
 	body {
 		color: #2980b9;
 	}
 	hr {
-		border-top: 1px solid #2980b9;
-		border-bottom: 1px solid #fff;
+		border: 1px solid #EFEFEF;
+		background-color: #EFEFEF;
+		margin-top: 10px;
+	}
+	.header {
+		text-align: center;
+		background-color: #2980b9;
+		color:#FFFFFF;
+		width: 100%;
+		padding:10px 0 10px 0;
+		font-size:1.2em;
 	}
 		</style>
 	</head>
+	<body>
+	<div class="header">Facebook Bullshit Blocker</div>
 	<div><h3>Enter the keywords to block here:</h3></div>
 	<input type="text" id="block-item" name="block-item" />
 	<a href="#" id="submit-item" class="blue-btn">Add</a> <a href="#" id="clear-all" class="blue-btn">Clear all</a>
 	<hr />
 	<div><h3>List of blocked keywords:</h3></div>
 	<ul id="blocked-list"></ul>
+	<div><h4>Click on the keywords to delete it.</h4></div>
 	<script type="text/javascript" src="popup.js"></script>
+	</body>
 </html>
