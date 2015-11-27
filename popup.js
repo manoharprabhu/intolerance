@@ -4,6 +4,9 @@ window.onload = function(){
 }
 $(document).ready(function(){
 	$('#submit-item').on('click',function(){
+		if($('#block-item').val().length === 0){
+			return false;
+		}
 		chrome.storage.local.get({'blockedWords':[]}, function (result) {
 			var value = $('#block-item').val();
 			result.blockedWords.push(value);
@@ -11,12 +14,22 @@ $(document).ready(function(){
 			populateBlockedList();	
 		});
 	});
+	$('#block-item').keydown(function(event){
+		if(event.keyCode === 13){
+			$('#submit-item').click();
+		}
+	});
+	
+	$('#clear-all').on('click',function(){
+		chrome.storage.local.clear();
+		populateBlockedList();
+	})
 });
 
 var populateBlockedList = function () {
 	$('#blocked-list').empty();
+	$('#block-item').val('');
 	chrome.storage.local.get({'blockedWords':[]}, function (result) {
-		console.log(result);
 		result.blockedWords.forEach(function(item){
 			var oneItem = $('<div>')
 					.text(item)

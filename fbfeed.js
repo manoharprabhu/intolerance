@@ -1,16 +1,16 @@
 /* global $ */
-
 var blackList = [];
 function blockUnwantedFeeds(){
 	var suspects = $('#contentArea div[data-testid="fbfeed_story"]');
 	suspects.each(function(i) {
 		var str = $(this).text().toLowerCase();
+		$(this).css('-webkit-filter','none');
 		var flag = true;
 		blackList.forEach(function(item){
-			if(this.attr('data-bullshit') === undefined){
-				if(str.indexOf(item) !== -1 && flag){
+				if(str.indexOf(item.toLowerCase()) !== -1 && flag){
 					this.css('-webkit-filter','grayscale(0.5) blur(10px)');
-					var salvation = $('<div>').css('position','relative')
+					if(this.attr('data-bullshit') === undefined){
+						var salvation = $('<div>').css('position','relative')
 									.css('width','100%')
 									.css('color','#FFFFFF')
 									.css('background-color','#2980b9')
@@ -30,16 +30,26 @@ function blockUnwantedFeeds(){
 
 function DOMModificationHandler(){
     $(this).unbind('DOMSubtreeModified.event1');
+	chrome.storage.onChanged.addListener(function(){
+		refreshBlackList(function(){
+			blockUnwantedFeeds();
+		});
+	});
     setTimeout(function(){
 		blockUnwantedFeeds();
-        $('#contentArea').bind('DOMSubtreeModified.event1',DOMModificationHandler);
+		$('#contentArea').bind('DOMSubtreeModified.event1',DOMModificationHandler);
     },1000);
 };
 
-
+function refreshBlackList(callback){
 chrome.storage.local.get({'blockedWords':[]}, function (result) {
 	blackList = result.blockedWords
-});
+	if(callback !== undefined) {
+		callback();
+	}
+});	
+}
+
+refreshBlackList();	
 //after document-load
 $('#contentArea').bind('DOMSubtreeModified.event1',DOMModificationHandler);
-

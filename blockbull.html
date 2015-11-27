@@ -3,9 +3,39 @@
 	<head>
 		<title>Block bullshit and horseshit from facebook feed</title>
 		<script type="text/javascript" src="jquery.js"></script>
+		<style>
+	#block-item {
+		padding: 0;
+		height: 30px;
+		position: relative;
+		left: 0;
+		outline: none;
+		border: 1px solid #cdcdcd;
+		border-color: rgba(0,0,0,.15);
+		background-color: white;
+		font-size: 16px;
+		margin-bottom: 10px;
+	}
+	.blue-btn {
+		background-color: #2980b9;
+		text-decoration: none;
+		padding: 5px 10px 5px 10px;
+		color:#FFFFFF;
+		border-radius: 5px;
+	}	
+	body {
+		color: #2980b9;
+	}
+	hr {
+		border-top: 1px solid #2980b9;
+		border-bottom: 1px solid #fff;
+	}
+		</style>
 	</head>
+	<label>Enter the keywords here:</label>
 	<input type="text" id="block-item" name="block-item" />
-	<input type="button" id="submit-item" name="Add" value="Add" />
+	<a href="#" id="submit-item" class="blue-btn">Add</a> <a href="#" id="clear-all" class="blue-btn">Clear all</a>
+	<hr />
 	<div id="blocked-list"></div>
 	<script type="text/javascript" src="popup.js"></script>
 </html>
