@@ -5,7 +5,7 @@
 
 Chrome extension to censor news feeds with specified keywords on Facebook.
 
-![Alt text](screenshot-1.png?raw=true "Block bullshit and horseshit from your facebook feed")
+![Alt text](screenshot.png?raw=true "Block bullshit and horseshit from your facebook feed")
 
 ###Usage
 Open the extension popup and add the desired keywords in the panel.
