@@ -9,7 +9,7 @@
 		"default_title": "Block bullshit and horseshit on your facebook news feed"
 	},
 	"content_scripts": [{
-		"matches": ["*://www.facebook.com/"],
+		"matches": ["*://www.facebook.com/*"],
 		"js": ["jquery.js","fbfeed.js"]
 	}],
 	"permissions":[
